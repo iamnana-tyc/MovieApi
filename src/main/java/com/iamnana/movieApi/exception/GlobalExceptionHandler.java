@@ -23,4 +23,18 @@ public class GlobalExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
+    @ExceptionHandler(RefreshTokenNotFoundException.class)
+    public ProblemDetail handleRefreshTokenNotFoundException(RefreshTokenNotFoundException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(RefreshTokenExpiredException.class)
+    public ProblemDetail handleRefreshTokenExpiredException(RefreshTokenExpiredException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidOtpException.class)
+    public ProblemDetail handleInvalidOtpException(InvalidOtpException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.EXPECTATION_FAILED, ex.getMessage());
+    }
 }
